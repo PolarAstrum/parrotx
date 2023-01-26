@@ -80,6 +80,11 @@ public class ItemUtil {
                 meta.setDisplayName(I18n.color(display));
             }
 
+            final int customModelData = data.getInt("CustomModelData",  -1);
+            if (customModelData != -1) {
+                meta.setCustomModelData(customModelData);
+            }
+
             final List<String> lore = data.getList("Lore", String.class);
             if (!lore.isEmpty()) {
                 lore.replaceAll(I18n::color);
@@ -217,6 +222,10 @@ public class ItemUtil {
 
         if (meta.hasDisplayName()) {
             section.set("Display", meta.getDisplayName());
+        }
+
+        if (meta.hasCustomModelData()) {
+            section.set("CustomModelData", meta.getCustomModelData());
         }
 
         if (meta.hasLore()) {
