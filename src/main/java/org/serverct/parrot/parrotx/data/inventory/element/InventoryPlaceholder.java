@@ -156,9 +156,15 @@ public class InventoryPlaceholder implements InventoryElement {
         }
 
         lang.log.debug("事件处理结果: {0}", (Object) event.isCancelled());
-        Bukkit.getScheduler().runTask(holder.getPlugin(), () -> {
-            holder.refresh(event.getInventory());
-            holder.getBase().getViewer().updateInventory();
-        });
+        if (holder.getPlugin().isFolia()) {
+            Bukkit.getAsyncScheduler().runNow(holder.getPlugin(), task -> handleClick(holder, event));
+        } else {
+            Bukkit.getScheduler().runTask(holder.getPlugin(), () -> handleClick(holder, event));
+        }
+    }
+
+    private void handleClick(PInventory<?> holder, InventoryClickEvent event) {
+        holder.refresh(event.getInventory());
+        holder.getBase().getViewer().updateInventory();
     }
 }

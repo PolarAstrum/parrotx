@@ -129,7 +129,11 @@ public class InventoryFreeArea implements InventoryElement {
     @Override
     public void click(PInventory<?> holder, InventoryClickEvent event) {
         onClick(event);
-        Bukkit.getScheduler().runTask(plugin, this::refresh);
+        if (plugin.isFolia()) {
+            Bukkit.getAsyncScheduler().runNow(plugin, task -> refresh());
+        } else {
+            Bukkit.getScheduler().runTask(plugin, this::refresh);
+        }
     }
 
     @Override
