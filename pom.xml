@@ -6,7 +6,7 @@
 
     <groupId>org.serverct.parrot</groupId>
     <artifactId>ParrotX</artifactId>
-    <version>1.4.9</version>
+    <version>1.4.91</version>
     <packaging>jar</packaging>
 
     <name>ParrotX</name>
@@ -150,12 +150,6 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>4.0.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
