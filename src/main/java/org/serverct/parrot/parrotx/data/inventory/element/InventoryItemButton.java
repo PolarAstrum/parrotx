@@ -52,11 +52,7 @@ public class InventoryItemButton implements InventoryElement {
 
         final Player user = (Player) event.getWhoClicked();
         final ItemStack item = cursor.clone();
-        if (holder.getPlugin().isFolia()) {
-            Bukkit.getAsyncScheduler().runNow(holder.getPlugin(), task -> handleClick(user, item, event));
-        } else {
-            Bukkit.getScheduler().runTask(holder.getPlugin(), () -> handleClick(user, item, event));
-        }
+        Bukkit.getScheduler().runTask(holder.getPlugin(), () -> handleClick(user, item, event));
     }
 
     private void handleClick(Player user, ItemStack item, InventoryClickEvent event) {

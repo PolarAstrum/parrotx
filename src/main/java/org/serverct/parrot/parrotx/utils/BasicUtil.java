@@ -8,12 +8,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.serverct.parrot.parrotx.PPlugin;
-import org.serverct.parrot.parrotx.ParrotX;
 import org.serverct.parrot.parrotx.utils.i18n.I18n;
-import parsii.eval.Expression;
-import parsii.eval.Parser;
-import parsii.eval.Scope;
-import parsii.eval.Variable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -48,26 +43,26 @@ public class BasicUtil {
         target.addPotionEffect(new PotionEffect(type, duration * 20, level));
     }
 
-    public static double calculate(String expression, int xValue) {
-        final Map<String, Double> variable = new HashMap<>();
-        variable.put("x", (double) xValue);
-        return calculate(expression, variable);
-    }
+//    public static double calculate(String expression, int xValue) {
+//        final Map<String, Double> variable = new HashMap<>();
+//        variable.put("x", (double) xValue);
+//        return calculate(expression, variable);
+//    }
 
-    public static double calculate(final String expression, final Map<String, Double> variable) {
-        try {
-            final Scope scope = new Scope();
-            variable.forEach((symbol, value) -> {
-                final Variable var = scope.getVariable(symbol);
-                var.setValue(value);
-            });
-            final Expression expr = Parser.parse(expression, scope);
-            return expr.evaluate();
-        } catch (Throwable e) {
-            ParrotX.log("计算计算数学表达式({0}, 变量: {1}) 时遇到错误: {2}.", expression, variable, e.getMessage());
-        }
-        return 0;
-    }
+//    public static double calculate(final String expression, final Map<String, Double> variable) {
+//        try {
+//            final Scope scope = new Scope();
+//            variable.forEach((symbol, value) -> {
+//                final Variable var = scope.getVariable(symbol);
+//                var.setValue(value);
+//            });
+//            final Expression expr = Parser.parse(expression, scope);
+//            return expr.evaluate();
+//        } catch (Throwable e) {
+//            ParrotX.log("计算计算数学表达式({0}, 变量: {1}) 时遇到错误: {2}.", expression, variable, e.getMessage());
+//        }
+//        return 0;
+//    }
 
     public static String arabic2Roman(int number) {
         StringBuilder rNumber = new StringBuilder();

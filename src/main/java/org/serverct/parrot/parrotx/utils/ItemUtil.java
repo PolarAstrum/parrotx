@@ -64,7 +64,7 @@ public class ItemUtil {
 
             final int damage = data.getInt("Durability", -1);
             if (damage != -1) {
-                if (XMaterial.isNewVersion()) {
+                if (XMaterial.supports(13)) {
                     if (meta instanceof Damageable) {
                         final Damageable damageable = (Damageable) meta;
                         damageable.setDamage(damage);
@@ -81,8 +81,10 @@ public class ItemUtil {
             }
 
             final int customModelData = data.getInt("CustomModelData",  -1);
-            if (customModelData != -1) {
-                meta.setCustomModelData(customModelData);
+            if (XMaterial.supports(14)) {
+                if (customModelData != -1) {
+                    meta.setCustomModelData(customModelData);
+                }
             }
 
             final List<String> lore = data.getList("Lore", String.class);
@@ -100,7 +102,7 @@ public class ItemUtil {
                         continue;
                     }
 
-                    final Enchantment enchantment = xEnchantment.get().parseEnchantment();
+                    final Enchantment enchantment = xEnchantment.get().get();
                     if (Objects.isNull(enchantment)) {
                         ParrotX.log("构建 ItemStack 时读取到未知附魔: {0}.", name);
                         continue;
@@ -210,7 +212,7 @@ public class ItemUtil {
             return;
         }
 
-        if (XMaterial.isNewVersion()) {
+        if (XMaterial.supports(13)) {
             if (meta instanceof Damageable) {
                 final Damageable damage = (Damageable) meta;
                 section.set("Durability", damage.getDamage());
@@ -224,8 +226,10 @@ public class ItemUtil {
             section.set("Display", meta.getDisplayName());
         }
 
-        if (meta.hasCustomModelData()) {
-            section.set("CustomModelData", meta.getCustomModelData());
+        if (XMaterial.supports(14)) {
+            if (meta.hasCustomModelData()) {
+                section.set("CustomModelData", meta.getCustomModelData());
+            }
         }
 
         if (meta.hasLore()) {

@@ -43,8 +43,6 @@ public abstract class PPlugin extends JavaPlugin {
     protected PConfig pConfig;
     @Getter
     protected I18n lang;
-    @Getter
-    protected boolean isFolia;
 
     @Setter
     private String versionLog = "本插件基于 ParrotX {0}, 感谢使用.";
@@ -55,7 +53,6 @@ public abstract class PPlugin extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         final long timestamp = System.currentTimeMillis();
-        checkFolia();
         try {
             ParrotXAPI.registerPlugin(this);
             ParrotX.setDebugMode(getConfig().getBoolean("Debug", false));
@@ -209,12 +206,7 @@ public abstract class PPlugin extends JavaPlugin {
     }
 
     public void preDisable() {
-        if (isFolia) {
-            getServer().getAsyncScheduler().cancelTasks(this);
-        } else {
-            getServer().getScheduler().cancelTasks(this);
-        }
-        index.clearConfig();
+        getServer().getScheduler().cancelTasks(this);
     }
 
     public <T extends PConfiguration> T getManager(final Class<T> clazz) {
@@ -253,14 +245,5 @@ public abstract class PPlugin extends JavaPlugin {
 
     public String getPackageName() {
         return getClass().getPackage().getName();
-    }
-
-    protected void checkFolia() {
-        try {
-            Class.forName("io.papermc.paper.threadedregions.scheduler.AsyncScheduler");
-            isFolia = true;
-        } catch (ClassNotFoundException ex) {
-            isFolia = false;
-        }
     }
 }
