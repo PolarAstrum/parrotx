@@ -6,7 +6,7 @@
 
     <groupId>org.serverct.parrot</groupId>
     <artifactId>ParrotX</artifactId>
-    <version>1.4.91</version>
+    <version>1.4.92</version>
     <packaging>jar</packaging>
 
     <name>ParrotX</name>
@@ -155,7 +155,7 @@
         <dependency>
             <groupId>de.tr7zw</groupId>
             <artifactId>item-nbt-api-plugin</artifactId>
-            <version>2.11.3</version>
+            <version>2.15.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
