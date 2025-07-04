@@ -174,7 +174,6 @@ public abstract class Autoloader {
                             pathBuilder.append(item.getPath());
 
                             final String path = pathBuilder.toString();
-                            System.out.println(path);
                             DataLoader<?> loader = getLoader(item.getType());
                             if (Objects.isNull(loader)) {
                                 if (ConfigurationSerializable.class.isAssignableFrom(item.getType())) {
