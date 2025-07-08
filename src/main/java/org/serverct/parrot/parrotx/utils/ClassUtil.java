@@ -102,10 +102,10 @@ public class ClassUtil {
                                     //如果是一个.class文件 而且不是目录
                                     if (name.endsWith(".class") && !entry.isDirectory()) {
                                         //去掉后面的".class" 获取真正的类名
-                                        String className = name.substring(packageName.length() + 1, name.length() - 6);
+                                        String className = name.substring(0, name.length() - 6).replace('/', '.');
                                         try {
                                             //添加到classes
-                                            final Class<?> clazz = Class.forName(packageName + '.' + className);
+                                            final Class<?> clazz = Class.forName(className);
                                             classes.add(clazz);
 //                                            plugin.getLang().log.debug("找到类: &a{0}&7.", clazz.getName());
                                         } catch (ClassNotFoundException e) {
