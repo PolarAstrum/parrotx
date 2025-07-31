@@ -6,7 +6,7 @@
 
     <groupId>org.serverct.parrot</groupId>
     <artifactId>ParrotX</artifactId>
-    <version>1.4.95</version>
+    <version>1.4.96</version>
     <packaging>jar</packaging>
 
     <name>ParrotX</name>
@@ -110,6 +110,12 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>dev.folia</groupId>
+            <artifactId>folia-api</artifactId>
+            <version>1.20.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>ink.ptms.core</groupId>
             <artifactId>v11605</artifactId>
